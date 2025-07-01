@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1a1a1a;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #000;
+  color: #66ccff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  z-index: 10;
+  text-shadow: 0 0 8px #00ccff;
+}
+
+.menu-icon {
+  position: absolute;
+  left: 1rem;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.brillo {
+  height: 18px;
+  width: 100%;
+  background: radial-gradient(ellipse at center, #00bfff 0%, transparent 70%);
+  box-shadow: 0 0 30px 15px #00bfff;
+  margin-top: 30px;
+}
+
+.menu-lateral {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 230px;
+  height: calc(100vh - 50px);
+  background-color: #1e1e1e;
+  padding-top: 1rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.menu-lateral.abierto {
+  transform: translateX(0);
+}
+
+.menu-lateral img {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.menu-lateral button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+}
+
+.menu-lateral button:hover {
+  background-color: #333;
+}
+
+.menu-lateral button span {
+  margin-right: 8px;
+}
+
+.contenido {
+  margin-top: 60px;
+  padding: 0 10px;
+  text-align: center;
+  position: relative;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #00bfff;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px #00bfff;
+}
+
+#tiempo {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1rem, 5vw, 1.6rem);
+  color: #ffd6e7;
+  margin-bottom: 1.5rem;
+}
+
+.banderas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  margin-top: 10px;
+}
+
+.bandera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.bandera {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.bandera.peru {
+  background: linear-gradient(to right, red 33.3%, white 33.3% 66.6%, red 66.6%);
+}
+
+.bandera.espana {
+  background: linear-gradient(to bottom, red 30%, #ffc107 40% 60%, red 70%);
+}
+
+@media (max-width: 480px) {
+  .bandera {
+    width: 50px;
+    height: 50px;
+  }
+
+  .banderas {
+    padding: 0 20px;
+  }
+}
+
+.alerta-tormenta {
+  margin-top: 20px;
+  text-align: center;
+  color: #ff8c00;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 0 0 5px #ffa500;
+  animation: aparecerDesvanecer 2s ease-in-out infinite;
+}
+
+@keyframes aparecerDesvanecer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
