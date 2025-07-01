@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2>Página Amor</h2>
+  </header>
+  <div class="brillo"></div>
+
+  <div id="menu" class="menu-lateral">
+    <img src="../img/logo.png" alt="Logo" />
+    <button onclick="redirigirEditarPerfil()"><span>📝</span>Editar Perfil</button>
+    <button onclick="location.href='/banco'"><span>🏦</span>Banco</button>
+    <button onclick="location.href='/codigos'"><span>📂</span>Google Drive</button>
+    <button onclick="location.href='/compra'"><span>🛒</span>Comprar</button>
+    <button onclick="location.href='/juego'"><span>🎮</span>Juegos</button>
+    <button onclick="location.href='/fotos'"><span>📷</span>Álbum de fotos</button>
+    <button onclick="location.href='/cartas'"><span>💌</span>Cartitas</button>
+  </div>
+
+  <div class="contenido">
+    <h1>Tiempo que vamos juntos</h1>
+    <p id="tiempo">Cargando...</p>
+    <div class="banderas">
+      <div class="bandera-container">
+        <div class="bandera peru"></div>
+        <p id="horaPeru">Hora: --:--</p>
+        <p id="climaPeru">Clima: --°</p>
+      </div>
+      <div class="bandera-container">
+        <div class="bandera espana"></div>
+        <p id="horaEspana">Hora: --:--</p>
+        <p id="climaEspana">Clima: --°</p>
+      </div>
+    </div>
+    <div id="alertaTormenta" class="alerta-tormenta"></div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
