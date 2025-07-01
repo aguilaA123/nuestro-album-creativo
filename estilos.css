@@ -1,0 +1,283 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000; /* fondo negro total */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.estado-indicador {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+.estado-indicador .punto {
+  font-size: 30px;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 50%;
+  transition: box-shadow 0.4s ease;
+}
+
+/* Cargando: gris sin brillo */
+.punto {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background-color: gray; /* estado: cargando */
+  box-shadow: none;
+  transition: all 0.3s ease;
+  vertical-align: middle;
+}
+
+/* Verde: activo con brillo fuerte */
+.verde {
+  background-color: #00ff00;
+  box-shadow: 0 0 8px 4px rgba(0, 255, 0, 0.9);
+}
+
+/* Rojo: inactivo con brillo fuerte */
+.rojo {
+  background-color: #ff1a1a;
+  box-shadow: 0 0 8px 4px rgba(255, 0, 0, 0.9);
+}
+
+
+.verde {
+  color: #00ff00;
+}
+
+.rojo {
+  color: #ff1a1a;
+}
+
+.modal {
+  background: transparent;
+  padding: 20px;
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #66ccff; /* Azul claro */
+  text-shadow: 0 0 8px #66ccff;
+}
+
+/* Campos input */
+.ds-label {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+}
+
+.ds-label span {
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+
+.ds-label::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid #666; /* borde gris sin foco */
+  background-color: #000; /* fondo negro dentro del cuadro */
+  pointer-events: none;
+  box-shadow: none;
+  transition: 0.3s ease;
+}
+
+.ds-label:hover::before,
+.ds-label:focus-within::before {
+  border-color: #00bfff;
+  box-shadow: 0 0 20px #00bfff;
+}
+
+.ds-label i {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ds-label i::before,
+.ds-label i::after {
+  content: "";
+  position: absolute;
+  border: 1.5px solid #00bfff;
+  width: 6px;
+  height: 2px;
+  background: transparent;
+  transform: translateX(-50%);
+  transition: 0.5s;
+}
+
+.ds-label i::before {
+  top: -3px;
+  left: 80%;
+}
+
+.ds-label:hover i::before {
+  width: 14px;
+  left: 20%;
+}
+
+.ds-label i::after {
+  bottom: -3px;
+  left: 20%;
+}
+
+.ds-label:hover i::after {
+  width: 14px;
+  left: 80%;
+}
+
+.ds-input-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00bfff; /* azul claro */
+  filter: drop-shadow(0 0 3px #00bfff); /* brillo leve */
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.ds_textinput {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  padding: 12px 10px 12px 50px;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+  z-index: 2;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.ds_textinput:focus {
+  transform: scale(1.01);
+}
+
+.mensaje-error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 35px;
+  animation: agrandarAchicar 0.3s ease-in-out 6 alternate;
+  animation-fill-mode: forwards;
+}
+
+@keyframes agrandarAchicar {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Botón estilo Uiverse con colores azules */
+.button {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 48px;
+  background-color: transparent; /* lo hacemos transparente */
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.button span {
+  background-color: #000; /* este es el nuevo fondo negro */
+  padding: 12px 113px;
+  border-radius: 10px;
+  z-index: 3;
+  position: relative;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -4px;
+  top: -1px;
+  margin: auto;
+  width: 103%;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #33ccff 0%, #0099ff 100%);
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.button::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #33ccff 0%, #00dbde 100%);
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.button:hover::after {
+  filter: blur(30px);
+}
+
+.button:hover::before {
+  transform: rotate(-180deg);
+}
+
+.button:active::before {
+  scale: 0.7;
+}
+
+.contenedor-acceso {
+  background-color: #000;
+  border: 2px solid #00bfff;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
+  transition: all 0.4s ease;
+  max-width: 360px;
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* Esto evitará que se desborde el botón animado */
+  box-sizing: border-box;
+}
+
+.button {
+  -webkit-tap-highlight-color: transparent; /* Elimina destello azul en móviles */
+}
