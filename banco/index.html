@@ -1,47 +1,254 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cuenta de ahorro</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <title>Banco</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6f1;
+    }
+    button:focus { outline: none; box-shadow: none; }.topbar {
+  position: fixed; top: 0; left: 0; width: 100%; height: 50px;
+  background-color: #f9a8d4; color: white; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); z-index: 10;
+}
+.menu-icon {
+  position: absolute; left: 1rem; font-size: 24px; cursor: pointer;
+}
+.menu-lateral {
+  position: fixed; top: 50px; left: 0; width: 230px; height: calc(100vh - 50px);
+  background-color: #ffe4ec; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding-top: 1rem; transform: translateX(-100%); transition: transform 0.3s ease; z-index: 100;
+}
+.menu-lateral.abierto { transform: translateX(0); }
+.menu-lateral img { display: block; margin: 0 auto 1rem; width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.menu-lateral button {
+  display: flex; align-items: center; width: 100%; padding: 0.8rem 1rem; border: none;
+  background: none; cursor: pointer; font-size: 1rem; text-align: left;
+}
+.menu-lateral button:hover, .menu-lateral button.activo { background-color: #fcddec; font-weight: bold; }
+.contenido {
+  margin-top: 80px; padding: 1rem; display: flex; justify-content: center; align-items: center; flex-direction: column;
+}
+.panel {
+  background-color: white; border-radius: 20px; padding: 2rem; width: 95%; max-width: 500px;
+  text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.panel img { width: 50px; margin-bottom: 1rem; }
+.panel h2 { font-size: 1.4rem; margin-bottom: 1.5rem; color: #d6336c; }
+.cajas {
+  display: flex; justify-content: center; gap: 10px; margin-bottom: 1.5rem;
+}
+.caja {
+  width: 40px; height: 40px; border: 2px solid #f9a8d4; border-radius: 5px;
+  font-size: 24px; color: #e63946; display: flex; align-items: center; justify-content: center;
+}
+.numeros {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1rem;
+}
+.numeros button {
+  padding: 15px; font-size: 18px; border: none; border-radius: 50%; background-color: #ffd6e8;
+  color: #c2185b; cursor: pointer;
+}
+.acciones button {
+  padding: 10px; font-size: 18px; border: none; border-radius: 50%; background-color: #f06292; color: white;
+  cursor: pointer;
+}
+.olvide { margin-top: 1.5rem; font-size: 0.95rem; color: #999; text-decoration: underline; cursor: pointer; }
+.overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 200;
+  padding: 1rem;
+}
+.popup {
+  background: white; padding: 2rem; border-radius: 10px;
+  width: 90%; max-width: 400px; position: relative;
+}
+.popup input {
+  width: 100%; padding: 0.6rem; margin-bottom: 1rem; border-radius: 5px; border: 1px solid #ccc;
+}
+.popup button {
+  width: 100%; background: #f9a8d4; color: white; border: none; padding: 0.6rem; border-radius: 5px; font-weight: bold;
+}
+.cerrar { position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #999; }
+.error-msg {
+  color: red; font-size: 0.9rem; text-align: center; margin-bottom: 10px; display: none;
+}
+  button:focus,
+  button:active {
+    outline: none;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  </style>
 </head>
 <body>
-
   <header class="topbar">
-    <img src="../img/salida.png" alt="Salir" class="flecha-salida" onclick="location.href='bank.html'" />
-    <h2>Cuenta de ahorro</h2>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2>Banco</h2>
   </header>
-
-  <div class="brillo-azul"></div>
-
-  <div class="contenido">
-    <div class="cci" id="cci">CCI: cargando...</div>
-    <div class="disponible">Disponible</div>
-    <div class="monto" id="saldo">S/ 0.00</div>
-    <div class="linea"></div>
-
-    <div class="circulos-container">
-      <div class="circulo-opcion">
-        <div class="circulo" onclick="location.href='transferir.html'">
-          <img src="../img/tranferencia.png" alt="Transferir" />
-        </div>
-        <div class="circulo-label">Transferir dinero</div>
-      </div>
-      <div class="circulo-opcion">
-        <div class="circulo" onclick="location.href='tarjeta.html'">
-          <img src="../img/tarjeta.png" alt="Tarjeta" />
-        </div>
-        <div class="circulo-label">Ver Tarjeta</div>
-      </div>
-    </div>
-
-    <div class="linea segunda-linea"></div>
-    <div class="movimientos-texto">Movimientos</div>
+  <div id="menu" class="menu-lateral">
+    <img src="logo.png" alt="Logo" />
+    <button onclick="location.href='user.html'">📝 Editar Perfil</button>
+    <button class="activo">🏦 Banco</button>
+    <button onclick="location.href='google.html'">📂 Google Drive</button>
+    <button onclick="location.href='compra.html'">🛒 Comprar</button>
+    <button onclick="location.href='game.html'">🎮 Juegos</button>
+    <button onclick="location.href='fotos.html'">📷 Álbum de fotos</button>
+    <button onclick="location.href='cartas.html'">💌 Cartitas</button>
   </div>
+  <div class="contenido">
+    <div class="panel">
+      <img src="../img/corazon.png" alt="Corazón" />
+      <h2>Desbloquea tu regalo especial</h2>
+      <div class="cajas">
+        <div class="caja" id="c1"></div>
+        <div class="caja" id="c2"></div>
+        <div class="caja" id="c3"></div>
+        <div class="caja" id="c4"></div>
+      </div>
+      <div class="numeros">
+        <button onclick="agregarDigito('1')">1</button>
+        <button onclick="agregarDigito('2')">2</button>
+        <button onclick="agregarDigito('3')">3</button>
+        <button onclick="agregarDigito('4')">4</button>
+        <button onclick="agregarDigito('5')">5</button>
+        <button onclick="agregarDigito('6')">6</button>
+        <button onclick="agregarDigito('7')">7</button>
+        <button onclick="agregarDigito('8')">8</button>
+        <button onclick="agregarDigito('9')">9</button>
+        <button onclick="borrar()">✖</button>
+        <button onclick="agregarDigito('0')">0</button>
+        <button onclick="validarPin()">🔒</button>
+      </div>
+      <div class="olvide" onclick="abrirFormulario()">¿Olvidaste tu contraseña?</div>
+    </div>
+  </div>
+  <div class="overlay" id="overlay">
+    <div class="popup" id="popupConfirm">
+      <div class="cerrar" onclick="cerrarForm()">✖</div>
+      <div class="error-msg" id="errorMsg">Error al confirmar</div>
+      <input type="text" id="usuarioConfirm" placeholder="Usuario actual">
+      <input type="password" id="claveConfirm" placeholder="Contraseña actual">
+      <button onclick="confirmarIdentidad()">Confirmar</button>
+    </div>
+    <div class="popup" id="popupNuevoPin" style="display:none">
+      <div class="cerrar" onclick="cerrarForm()">✖</div>
+      <div class="error-msg" id="errorPin">El PIN debe tener 4 dígitos</div>
+      <input type="text" id="nuevoPin" placeholder="Nuevo PIN (4 dígitos)" maxlength="4">
+      <button onclick="guardarNuevoPin()">Guardar PIN</button>
+    </div>
+  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";const firebaseConfig = {
+  apiKey: "AIzaSyBhGxuS88U0UgGYfcLkricEXKv8lIQm2aU",
+  authDomain: "wolf-streaming.firebaseapp.com",
+  projectId: "wolf-streaming",
+  storageBucket: "wolf-streaming.appspot.com",
+  messagingSenderId: "892543202823",
+  appId: "1:892543202823:web:29262419377d78491a5ca2"
+};
 
-  <script type="module" src="script.js"></script>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const usuarioID = sessionStorage.getItem("usuarioActivo");
 
+let pinIngresado = "";
+
+window.agregarDigito = function (d) {
+  if (pinIngresado.length >= 4) return;
+  pinIngresado += d;
+  document.getElementById("c" + pinIngresado.length).textContent = "❤️";
+};
+
+window.borrar = function () {
+  if (pinIngresado.length > 0) {
+    document.getElementById("c" + pinIngresado.length).textContent = "";
+    pinIngresado = pinIngresado.slice(0, -1);
+  }
+};
+
+window.validarPin = async function () {
+  if (!usuarioID) return;
+  const ref = doc(db, "usuarios", usuarioID);
+  const snap = await getDoc(ref);
+  if (snap.exists() && snap.data().pin === pinIngresado) {
+    window.location.href = 'banco.html';
+  } else {
+    mostrarError("errorMsg");
+    pinIngresado = "";
+    for (let i = 1; i <= 4; i++) document.getElementById("c" + i).textContent = "";
+  }
+};
+
+window.abrirFormulario = function () {
+  document.getElementById("overlay").style.display = "flex";
+  document.getElementById("popupConfirm").style.display = "block";
+  document.getElementById("popupNuevoPin").style.display = "none";
+};
+
+window.cerrarForm = function () {
+  document.getElementById("overlay").style.display = "none";
+};
+
+window.confirmarIdentidad = async function () {
+  const usuario = document.getElementById("usuarioConfirm").value.trim();
+  const clave = document.getElementById("claveConfirm").value.trim();
+  const ref = doc(db, "usuarios", usuarioID);
+  const snap = await getDoc(ref);
+
+  if (snap.exists()) {
+    const data = snap.data();
+    if (data.usuario === usuario && data.contraseña === clave) {
+      document.getElementById("popupConfirm").style.display = "none";
+      document.getElementById("popupNuevoPin").style.display = "block";
+    } else {
+      mostrarError("errorMsg");
+    }
+  }
+};
+
+window.guardarNuevoPin = async function () {
+  const nuevo = document.getElementById("nuevoPin").value.trim();
+  if (!/^[0-9]{4}$/.test(nuevo)) {
+    mostrarError("errorPin");
+    return;
+  }
+  const ref = doc(db, "usuarios", usuarioID);
+  await updateDoc(ref, { pin: nuevo });
+  alert("PIN actualizado correctamente ✅");
+  cerrarForm();
+};
+
+function mostrarError(id) {
+  const msg = document.getElementById(id);
+  msg.style.display = "block";
+  setTimeout(() => msg.style.display = "none", 3000);
+}
+
+window.toggleMenu = function () {
+  document.getElementById("menu").classList.toggle("abierto");
+};
+
+document.addEventListener("click", function (e) {
+  const menu = document.getElementById("menu");
+  const icon = document.querySelector(".menu-icon");
+  if (!menu.contains(e.target) && !icon.contains(e.target)) {
+    menu.classList.remove("abierto");
+  }
+});
+
+  </script>
 </body>
-  </html>
+</html>
