@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffe6f1;
+  padding-top: 70px;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
+  color: #00d0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.brillo-azul {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: radial-gradient(circle, rgba(0,255,255,0.4) 0%, rgba(0,255,255,0) 80%);
+  box-shadow: 0 0 25px 10px #00d0ff;
+  z-index: 5;
+}
+
+.flecha-salida {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  cursor: pointer;
+}
+
+.contenido {
+  padding: 2rem;
+}
+
+.cci {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.disponible {
+  font-size: 1.2rem;
+  color: #c2185b;
+  margin-bottom: 0.5rem;
+}
+
+.monto {
+  font-size: 2.5rem;
+  color: #000;
+  font-weight: bold;
+}
+
+.linea {
+  margin-top: 1rem;
+  height: 1px;
+  background-color: #ccc;
+  width: 100%;
+}
+
+.circulos-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  padding-left: 35px;
+}
+
+.circulo-opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.circulo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #f9a8d4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.circulo img {
+  width: 32px;
+  height: 32px;
+}
+
+.circulo-label {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.segunda-linea {
+  margin-top: 2.5rem;
+}
+
+.movimientos-texto {
+  margin-top: 0.8rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #7a003c;
+}
+
+/* Eliminar cuadro azul en botones e imágenes */
+*:focus {
+  outline: none !important;
+}
+
+img, button, a, div {
+  -webkit-tap-highlight-color: transparent;
+}a* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1A1A1A;
+  padding-top: 60px;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #000;
+  color: #00d0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.brillo-azul {
+  position: fixed;
+  top: 50px; /* Justo debajo de la barra */
+  left: 0;
+  width: 100%;
+  height: 0px;
+  background: radial-gradient(circle, rgba(0,255,255,0.5) 0%, rgba(0,255,255,0) 80%);
+  box-shadow: 0 0 35px 15px #00d0ff;
+  z-index: 5;
+}
+
+.flecha-salida {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.contenido {
+  padding: 2rem;
+}
+
+.cci {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.disponible {
+  font-size: 1.2rem;
+  color: #00ccff;
+  margin-bottom: 0.5rem;
+}
+
+.monto {
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.linea {
+  margin-top: 1rem;
+  height: 1px;
+  background-color: #ccc;
+  width: 100%;
+}
+
+.circulos-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  padding-left: 35px;
+}
+
+.circulo-opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.circulo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #f9a8d4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.circulo img {
+  width: 32px;
+  height: 32px;
+}
+
+.circulo-label {
+  font-size: 0.9rem;
+  color: #b3b3b3;
+}
+
+.segunda-linea {
+  margin-top: 2.5rem;
+}
+
+.movimientos-texto {
+  margin-top: 0.8rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00ccff;
+}
+
+/* Eliminar cuadro azul en botones e imágenes */
+*:focus {
+  outline: none !important;
+}
+
+img, button, a, div {
+  -webkit-tap-highlight-color: transparent;
+}
