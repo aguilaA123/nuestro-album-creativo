@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuenta de ahorro</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="topbar">
+    <img src="../..//img/salida.png" alt="Salir" class="flecha-salida" onclick="location.href='bank.html'" />
+    <h2>Cuenta de ahorro</h2>
+  </header>
+
+  <div class="brillo-azul"></div>
+
+  <div class="contenido">
+    <div class="cci" id="cci">CCI: cargando...</div>
+    <div class="disponible">Disponible</div>
+    <div class="monto" id="saldo">S/ 0.00</div>
+    <div class="linea"></div>
+
+    <div class="circulos-container">
+      <div class="circulo-opcion">
+        <div class="circulo" onclick="location.href='transferir.html'">
+          <img src="../../img/tranferencia.png" alt="Transferir" />
+        </div>
+        <div class="circulo-label">Transferir dinero</div>
+      </div>
+      <div class="circulo-opcion">
+        <div class="circulo" onclick="location.href='tarjeta.html'">
+          <img src="../../img/tarjeta.png" alt="Tarjeta" />
+        </div>
+        <div class="circulo-label">Ver Tarjeta</div>
+      </div>
+    </div>
+
+    <div class="linea segunda-linea"></div>
+    <div class="movimientos-texto">Movimientos</div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
