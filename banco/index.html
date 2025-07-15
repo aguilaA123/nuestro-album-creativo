@@ -184,7 +184,7 @@ window.validarPin = async function () {
   const ref = doc(db, "usuarios", usuarioID);
   const snap = await getDoc(ref);
   if (snap.exists() && snap.data().pin === pinIngresado) {
-    window.location.href = '/banco/cuenta-bancaria';
+    window.location.href = '/banco/cuenta-bancaria/';
   } else {
     mostrarError("errorMsg");
     pinIngresado = "";
