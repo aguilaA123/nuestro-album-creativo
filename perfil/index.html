@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6f1;
+      padding: 2rem;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #f9a8d4;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .menu-icon {
+      position: absolute;
+      left: 1rem;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 50px;
+      left: 0;
+      width: 230px;
+      height: calc(100vh - 50px);
+      background-color: #ffe4ec;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      padding-top: 1rem;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 100;
+    }
+
+    .menu-lateral.abierto {
+      transform: translateX(0);
+    }
+
+    .menu-lateral img {
+      display: block;
+      margin: 0 auto 1rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .menu-lateral button {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .menu-lateral button:hover,
+    .menu-lateral button.activo {
+      background-color: #fcddec;
+      font-weight: bold;
+    }
+
+    .contenido {
+      margin-top: 80px;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .card-container {
+      position: relative;
+      width: 95%;
+      max-width: 420px;
+      margin-left: -50px;
+    }
+
+    .card-container img {
+      width: 120%;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .dato {
+      position: absolute;
+      font-weight: bold;
+      color: #333;
+      font-size: 16px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .dato.usuario {
+      top: 47%;
+      left: 92%;
+      transform: translate(-50%, -50%);
+    }
+
+    .dato.password {
+      top: 65%;
+      left: 92%;
+      transform: translate(-50%, -50%);
+    }
+
+    .btn-editar {
+      margin-top: 2rem;
+      background-color: #f9a8d4;
+      border: none;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Formulario emergente */
+    .fondo-form {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .formulario-flotante {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .formulario-flotante h3 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      margin-top: -10px;
+    }
+
+    .formulario-flotante input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .formulario-flotante .campo-password {
+      position: relative;
+    }
+
+    .formulario-flotante .campo-password input {
+      padding-right: 2rem;
+    }
+
+    .formulario-flotante .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 19%;
+      cursor: pointer;
+    }
+
+    .formulario-flotante button {
+      width: 100%;
+      padding: 0.6rem;
+      background-color: #f9a8d4;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cerrar-formulario {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .mensaje-error {
+      color: red;
+      text-align: center;
+      margin-bottom: 10px;
+      display: none;
+    }
+    
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2>Editar Perfil</h2>
+  </header>
+
+  <div id="menu" class="menu-lateral">
+    <img src="../img/logo.png" alt="Logo" />
+    <button class="activo" onclick="cerrarMenu()"><span>📝</span>Editar Perfil</button>
+  <!-- Reemplaza tu bloque del menú lateral por este -->
+  <button onclick="location.href='../banco'"><span>🏦</span>Banco</button>
+  <button onclick="location.href='google.html'"><span>📂</span>Google Drive</button>
+  <button onclick="location.href='compra.html'"><span>🛒</span>Comprar</button>
+  <button onclick="location.href='game.html'"><span>🎮</span>Juegos</button>
+  <button onclick="location.href='fotos.html'"><span>📷</span>Álbum de fotos</button>
+  <button onclick="location.href='cartas.html'"><span>💌</span>Cartitas</button>
+</div>
+  </div>
+
+  <div class="contenido">
+    <div class="card-container">
+      <img src="../img/identificacion.png" alt="Identificación" />
+      <div id="mostrarUsuario" class="dato usuario">Cargando...</div>
+      <div id="mostrarPassword" class="dato password">Cargando...</div>
+    </div>
+    <button class="btn-editar" onclick="abrirFormulario()">Editar Perfil</button>
+  </div>
+
+  <div id="fondoFormulario" class="fondo-form">
+    <div class="formulario-flotante">
+      <span class="cerrar-formulario" onclick="cerrarFormulario()">✖</span>
+      <h3>Editar Perfil</h3>
+      <p id="errorMensaje" class="mensaje-error"></p>
+      <input type="text" id="nuevoUsuario" maxlength="9" placeholder="Nuevo Usuario (máx 9 caracteres)" />
+      <div class="campo-password">
+        <input type="password" id="nuevaPassword" maxlength="10" placeholder="Nueva Contraseña (máx 10)" />
+        <span class="toggle-password" onclick="toggleVerPassword()">️👁️‍🗨️</span>
+      </div>
+      <button onclick="guardarCambios()">Finalizar</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBhGxuS88U0UgGYfcLkricEXKv8lIQm2aU",
+      authDomain: "wolf-streaming.firebaseapp.com",
+      projectId: "wolf-streaming",
+      storageBucket: "wolf-streaming.firebasestorage.app",
+      messagingSenderId: "892543202823",
+      appId: "1:892543202823:web:29262419377d78491a5ca2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const mostrarUsuario = document.getElementById("mostrarUsuario");
+    const mostrarPassword = document.getElementById("mostrarPassword");
+    const usuarioActivo = sessionStorage.getItem("usuarioActivo");
+
+    async function cargarDatos() {
+      if (!usuarioActivo) return;
+      const ref = doc(db, "usuarios", usuarioActivo);
+      const snap = await getDoc(ref);
+      if (snap.exists()) {
+        const data = snap.data();
+        mostrarUsuario.textContent = data.usuario;
+        mostrarPassword.textContent = data.contraseña;
+        document.getElementById("nuevoUsuario").value = data.usuario;
+        document.getElementById("nuevaPassword").value = data.contraseña;
+      }
+    }
+    cargarDatos();
+
+    window.guardarCambios = async function () {
+      const nuevoUsuario = document.getElementById("nuevoUsuario").value.trim();
+      const nuevaPassword = document.getElementById("nuevaPassword").value.trim();
+      const error = document.getElementById("errorMensaje");
+
+      if (!nuevoUsuario || !nuevaPassword) {
+        error.textContent = "Debes llenar ambos campos.";
+        error.style.display = "block";
+        setTimeout(() => { error.style.display = "none"; }, 3000);
+        return;
+      }
+
+      const ref = doc(db, "usuarios", usuarioActivo);
+      await updateDoc(ref, {
+        usuario: nuevoUsuario,
+        contraseña: nuevaPassword
+      });
+      cerrarFormulario();
+      cargarDatos();
+    };
+  </script>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("abierto");
+    }
+
+    function cerrarMenu() {
+      document.getElementById("menu").classList.remove("abierto");
+    }
+
+    function abrirFormulario() {
+      document.getElementById("fondoFormulario").style.display = "flex";
+    }
+
+    function cerrarFormulario() {
+      document.getElementById("fondoFormulario").style.display = "none";
+    }
+
+    function toggleVerPassword() {
+      const input = document.getElementById("nuevaPassword");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    document.addEventListener("click", function (e) {
+      const menu = document.getElementById("menu");
+      const icon = document.querySelector(".menu-icon");
+      const fondo = document.getElementById("fondoFormulario");
+      const form = document.querySelector(".formulario-flotante");
+
+      if (!menu.contains(e.target) && !icon.contains(e.target)) cerrarMenu();
+      if (e.target === fondo && !form.contains(e.target)) cerrarFormulario();
+    });
+  </script>
+</body>
+  </html>
